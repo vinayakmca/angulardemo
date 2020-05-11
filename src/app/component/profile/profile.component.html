@@ -1,0 +1,142 @@
+<div class="card m-3">
+    <div class="card-body">
+    <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
+        <input type="hidden" formControlName="id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+        <div class="form-row">
+        <div class="form-group col-5">
+            <label>First Name</label>
+            <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors.required">First Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label>Last Name</label>
+            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                <div *ngIf="f.lastName.errors.required">First Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label>Email</label>
+            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">First Name is required</div>
+            </div>
+        </div>
+
+        <div class="form-group col-5">
+            <label>Mobile</label>
+            <input type="text" formControlName="mobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+            <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                <div *ngIf="f.mobile.errors.required">First Name is required</div>
+                <div *ngIf="f.mobile.errors.maxlength">Please enter mobile no properly</div>
+            </div>
+        </div>
+        </div>
+    
+
+        <div class="card">
+            <div class="card-body">
+        <div class="form-group" formArrayName="education">
+            <div class="form-group" *ngFor="let item of educationForm.controls; let pointIndex=index">
+            <div class="form-group" [formGroupName]="pointIndex">
+                <div class="form-group">
+                  <label> COURSE NAME: </label>
+                  <input type="text"   class="form-control" formControlName="courseName" [ngClass]="{ 'is-invalid': submitted && educationForm.controls[pointIndex].get('courseName').errors }"  />
+                  <div *ngIf="submitted && educationForm.controls[pointIndex].get('courseName').errors" class="invalid-feedback">
+                    <div *ngIf="educationForm.controls[pointIndex].get('courseName').errors.required">First Name is required</div>
+                </div>
+                </div>
+               <div class="form-group">
+                   <label> PERCENTAGE: </label> 
+                  <input type="text"   class="form-control" formControlName="percentage" [ngClass]="{ 'is-invalid': submitted && educationForm.controls[pointIndex].get('percentage').errors }" />
+                  <div *ngIf="submitted && educationForm.controls[pointIndex].get('percentage').errors" class="invalid-feedback">
+                    <div *ngIf="educationForm.controls[pointIndex].get('percentage').errors.required">First Name is required</div>
+                </div>
+               </div>
+             <div class="form-group">
+              <label> College Name:</label> 
+              <input type="text"   class="form-control" formControlName="collegeName" [ngClass]="{ 'is-invalid': submitted && educationForm.controls[pointIndex].get('collegeName').errors }" />
+              <div *ngIf="submitted && educationForm.controls[pointIndex].get('collegeName').errors" class="invalid-feedback">
+                <div *ngIf="educationForm.controls[pointIndex].get('collegeName').errors.required">First Name is required</div>
+            </div>
+            </div>
+            <div class="form-group">
+            <label>Passing Year:</label>
+             <input  type="text"   class="form-control" formControlName="passingYear" [ngClass]="{ 'is-invalid': submitted && educationForm.controls[pointIndex].get('passingYear').errors }" />
+             <div *ngIf="submitted && educationForm.controls[pointIndex].get('passingYear').errors" class="invalid-feedback">
+                <div *ngIf="educationForm.controls[pointIndex].get('passingYear').errors.required">First Name is required</div>
+            </div>
+            </div>
+        </div>
+            <button type="button" class="btn btn-danger" (click)="deleteEducation(pointIndex)">Delete </button>
+            </div>
+            <div class="form-group">
+            <button type="button" class="btn btn-success" (click)=" addEducation()">Add Education</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+        <div class="form-group" formArrayName="experiance">
+            <div class="form-group" *ngFor="let item of experianceForm.controls; let pointIndex=index" >
+                <div class="form-group" [formGroupName]="pointIndex">
+                    <div class="form-group"> 
+                <label> Company NAME:</label>
+              <input type="text" formControlName="companyName"  class="form-control" [ngClass]="{ 'is-invalid': submitted &&  experianceForm.controls[pointIndex].get('companyName').errors }" />
+              <div *ngIf="submitted && experianceForm.controls[pointIndex].get('companyName').errors" class="invalid-feedback">
+                <div *ngIf="experianceForm.controls[pointIndex].get('companyName').errors.required">First Name is required</div>
+            </div>  
+            </div>
+              <div class="form-group">
+             <label>
+                Designation: 
+             </label>
+             <input type="text" formControlName="designation"  class="form-control" [ngClass]="{ 'is-invalid': submitted &&  experianceForm.controls[pointIndex].get('designation').errors }"  />
+             <div *ngIf="submitted && experianceForm.controls[pointIndex].get('designation').errors" class="invalid-feedback">
+                <div *ngIf="experianceForm.controls[pointIndex].get('designation').errors.required">First Name is required</div>
+            </div>  
+             </div>
+             <div class="form-group">
+                <label>
+                    From Date 
+                    </label>
+                    <input  type="text" formControlName="fromDate"  class="form-control" [ngClass]="{ 'is-invalid': submitted &&  experianceForm.controls[pointIndex].get('fromDate').errors }" />
+                    <div *ngIf="submitted && experianceForm.controls[pointIndex].get('fromDate').errors" class="invalid-feedback">
+                        <div *ngIf="experianceForm.controls[pointIndex].get('fromDate').errors.required">First Name is required</div>
+                    </div>  
+                </div>
+                <div class="form-group">
+                    <label>
+                        To Date: 
+            </label>
+            <input  type="text" formControlName="toDate"  class="form-control" [ngClass]="{ 'is-invalid': submitted &&  experianceForm.controls[pointIndex].get('toDate').errors }"/>
+            <div *ngIf="submitted && experianceForm.controls[pointIndex].get('toDate').errors" class="invalid-feedback" >
+                <div *ngIf="experianceForm.controls[pointIndex].get('toDate').errors.required">First Name is required</div>
+            </div>  
+            </div>
+            </div>
+            <button type="button" class="btn btn-danger" (click)="deleteExperiance(pointIndex)">Delete</button>
+            </div>
+            <div class="form-group">
+            <button type="button" class="btn btn-success" (click)="addExperiance()">Add Experiance</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+        
+    <div class="form-group">
+        <div class="text-center">
+            <button class="btn btn-primary mr-1">SUBMIT</button>
+            
+        </div>
+    </div>
+    
+    </form>
+    </div>
+    
+  

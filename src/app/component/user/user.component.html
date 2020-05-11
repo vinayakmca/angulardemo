@@ -1,0 +1,45 @@
+
+ <div mat-dialog-content>  
+<div class="card m-3" *ngIf="!isHide">
+<div class="card-body">
+<form [formGroup]="userForm" (ngSubmit)="submitForm(curruntPage)">
+    <input type="hidden" formControlName="id" class="form-control" [ngClass]="{ 'is-invalid':  f.firstName.errors }" />
+    <div class="form-row">
+    <div class="form-group col-5">
+        <label>First Name</label>
+        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid':  f.firstName.errors }" />
+        <div *ngIf=" f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+        </div>
+    </div>
+    <div class="form-group col-5">
+        <label>Last Name</label>
+        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid':  f.lastName.errors }" />
+        <div *ngIf=" f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required">First Name is required</div>
+        </div>
+    </div>
+    <div class="form-group col-5">
+        <label>City</label>
+        <input type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid':  f.city.errors }" />
+        <div *ngIf=" f.city.errors" class="invalid-feedback">
+            <div *ngIf="f.city.errors.required">First Name is required</div>
+        </div>
+    </div>
+
+    <div class="form-group col-5">
+        <label>City</label>
+        <input type="file" formControlName="image" class="form-control" (change)="imageUpload($event)" [ngClass]="{ 'is-invalid': submitted && f.profile.errors }" />
+       
+    </div>
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary mr-1" [disabled]="!userForm.valid">{{isUpdate?'Update':'Register'}}</button>
+        <button type="button" class="btn btn-primary mr-1" (click)="close()">Close</button>
+    </div>
+
+</form>
+</div>
+</div>
+</div>

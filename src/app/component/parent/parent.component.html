@@ -1,0 +1,3 @@
+<p >parent works! {{ message }}</p>
+<button (click)='updateChildMessage()'>CLick Paranet</button>
+<app-child [childmessage]="message" (passMessageEvent)='displayUpdatedMessage($event)'></app-child>
