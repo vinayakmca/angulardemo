@@ -1,0 +1,15 @@
+<div>
+  <p>{{userDetails.firstName}}</p>
+  <p>{{userDetails.lastName}}</p>
+  <form [formGroup]="cityForm" (ngSubmit)="changeCity()">
+    <div class="form-group col-5">
+      <label>City</label>
+      <input type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submiited && f.city.errors }" />
+      <div *ngIf=" submiited && f.city.errors" class="invalid-feedback">
+          <div *ngIf="f.city.errors.required">City Name is required</div>
+      </div>
+  </div>
+    <button >Change City</button>
+  </form>
+ 
+</div>

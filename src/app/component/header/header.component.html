@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+  <a class="navbar-brand" href="#" >{{title}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/user">{{ 'Home' | uselessPipe: 'Mr':"Doctor"  }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/profile" bgColor>Profile</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/order" bgColor>Order</a>
+      </li>
+     <div *ngIf="!(showLoginButton | async)">      <button type="button" class="btn btn-outline-success my-2 my-sm-0" (click)="login()" >Login</button> </div>
+     <div *ngIf="(showLoginButton | async)">      <button type="button" class="btn btn-outline-success my-2 my-sm-0" (click)="logout()" >Logout</button> </div>
+
+    </ul>
+  </div>
+</nav>

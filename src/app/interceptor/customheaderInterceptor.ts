@@ -59,7 +59,7 @@ export class CustomHeaderInterceptor implements HttpInterceptor {
     Observable<HttpEvent<any>> {
     
       let cloneRequest;
-        if(req.url.indexOf("/authenticate")>-1){
+        if(req.url.indexOf("/authenticate")>-1 || req.url.indexOf("champak")>-1 ){
             cloneRequest=req;
         }
        else

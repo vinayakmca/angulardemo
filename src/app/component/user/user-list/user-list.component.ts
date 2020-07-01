@@ -54,6 +54,11 @@ export class UserListComponent implements OnInit {
     this.router.navigate(['/user/edit/', id]);
   }
 
+  updateUserCity(item,pageNo){
+
+    this.userService.updateUser(item,item.id).subscribe((data:{})=>{ this.toastr.success('record updated');this.router.navigate(['/user']);},error=>{alert('not able to update user');},()=> {this.getAllUsers(pageNo);});
+  }
+
  
    deleteUser(id,page){
      console.log(" delete user id ="+page);

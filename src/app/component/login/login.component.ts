@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
       userName:['',Validators.required],
       password:['',Validators.required],
      });
+     this.userService.setUserLoginButtonValue(false);
   }
 
   get f(){
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
   submitForm(){
    
     this.authObj=<AuthBody>this.loginForm.value;
-    this.userService.getToken(this.authObj).subscribe((data)=>{ localStorage.setItem("token",data.response);this.router.navigate(['/user']);} ,(error:any)=>{  console.log("errror message"+error)});
+    this.userService.login(this.authObj);
+  //  this.userService.getToken(this.authObj).subscribe((data)=>{ localStorage.setItem("token",data.response);this.router.navigate(['/user']);} ,(error:any)=>{  console.log("errror message"+error)});
         console.log("form submitted"+JSON.stringify(this.loginForm.value));
   }
 

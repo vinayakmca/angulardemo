@@ -17,9 +17,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MymodalcomponentComponent } from './mymodalcomponent/mymodalcomponent.component';
 import { CustomHeaderInterceptor } from './interceptor/customheaderInterceptor';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+//import { DetailsComponent } from './component/details/details.component';
 import { LoginComponent } from './component/login/login.component';
 import {UserModule} from './component/user/user/user.module';
+import {OrdersModule} from './module/orders/orders.module';
 import { UserComponent } from './component/user/user.component';
+import { HeaderComponent } from './component/header/header.component';
+import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
+import {ReverseStr} from '../app/pipe/resverstr.pipe'
+import {uselessPipe} from '../app/pipe/nameChanged.pipe';
+import {changeColor} from '../app/directive/chnageColor.directive';
 
 
 @NgModule({
@@ -31,6 +38,11 @@ import { UserComponent } from './component/user/user.component';
     PageNotFoundComponent,
     MymodalcomponentComponent,
     LoginComponent,
+    HeaderComponent,
+    ReverseStr,
+    uselessPipe,
+    changeColor
+    //DetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +55,9 @@ import { UserComponent } from './component/user/user.component';
     NgxUiLoaderModule,
     MaterialModule,
     UserModule,
-    ToastrModule.forRoot()
+    OrdersModule,
+    ToastrModule.forRoot(),
+    CalendarModule
    
   ],
  

@@ -1,0 +1,64 @@
+<div class="container">
+<div class="card-body">
+  <form [formGroup]="productForm" (ngSubmit)="submitForm()">
+     
+      <div class="form-row">
+      <div class="form-group col-5">
+          <label>First Name</label>
+          <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted &&  f.firstName.errors }" />
+          <div *ngIf=" f.firstName.errors" class="invalid-feedback">
+              <div *ngIf="f.firstName.errors.required">First Name is required</div>
+          </div>
+      </div>
+      <div class="form-group col-5">
+          <label>Last Name</label>
+          <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+          <div *ngIf=" f.lastName.errors" class="invalid-feedback">
+              <div *ngIf="f.lastName.errors.required">First Name is required</div>
+          </div>
+      </div>
+      <div class="form-group col-5">
+        <div>
+          <label>City: </label>
+          <select (change)="filterCity($event.target.value)" formControlName="city">
+            <option value="0">--All--</option>
+            <option *ngFor="let city of cities" value={{city}}>
+              {{city}}
+            </option>
+          </select>
+        </div>
+      </div>
+  
+      <div class="form-group col-5">
+          <label>Upload Image</label>
+          <input type="file" formControlName="image" class="form-control" (change)="imageUpload($event)"  />
+         
+      </div>
+      <div class="form-group col-5">
+          <div>
+            <input id="male" type="radio" value="male" name="gender" formControlName="gender">
+            <label for="male">Male</label>
+        </div>
+      
+        <div>
+            <input id="female" type="radio" value="female" name="gender" formControlName="gender">
+            <label for="female">Female</label>
+        </div>
+     </div>
+
+     <div class="form-group col-5">
+      <ejs-calendar id=calendar [value]='birthDate' [min]='minDate' [max]='maxDate' (change)="onValueChange($event)"></ejs-calendar>
+     </div>
+      </div>
+
+
+  
+      <div class="text-center">
+          <button class="btn btn-primary mr-1" >{{isUpdate?'Update':'Register'}}</button>
+          <button type="button" class="btn btn-primary mr-1" (click)="close()">Close</button>
+          <button type="button" class="btn btn-primary mr-1" (click)="downloadPdf()">Download File</button>
+      </div>
+  
+  </form>
+  </div>
+</div>

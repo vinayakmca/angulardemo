@@ -1,0 +1,13 @@
+<div class="card" style="width:300px">
+  <img  class="card-img-top" src="assets/images/download.png">
+  <div class="card-body">
+    <h4 class="card-title">{{product.productName}}</h4>
+    <p class="card-text">Price: {{product.productPrice}}</p>
+    <button type="button" (click)="addQuantity()">+</button>
+     <p>Qunatity:{{quantity}}</p>
+     <button type="button" (click)="removeQuantity()">-</button>
+     <div class="card-footer">
+     <button type="button" class="btn btn-primary" (click)="addProduct()">ADD TO CART</button>
+     </div>
+  </div>
+</div>

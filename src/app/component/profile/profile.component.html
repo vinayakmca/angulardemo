@@ -63,12 +63,25 @@
             </div>
             </div>
             <div class="form-group">
-            <label>Passing Year:</label>
+            <label>Passing Year :</label>
              <input  type="text"   class="form-control" formControlName="passingYear" [ngClass]="{ 'is-invalid': submitted && educationForm.controls[pointIndex].get('passingYear').errors }" />
              <div *ngIf="submitted && educationForm.controls[pointIndex].get('passingYear').errors" class="invalid-feedback">
                 <div *ngIf="educationForm.controls[pointIndex].get('passingYear').errors.required">First Name is required</div>
             </div>
             </div>
+           
+            <div class="form-group"  formArrayName="subjects" *ngFor="let subjectItem of  getSubject(item); let subPointIndex=index">
+                <div class="form-group"  [formGroupName]="subPointIndex">
+                    <label> Subject Name:</label> 
+                    <input type="text"   class="form-control" formControlName="subject"  [ngClass]="{ 'is-invalid': submitted && subjectItem.get('subject').errors }"/>
+                    <div *ngIf="submitted &&  subjectItem.get('subject').errors.errors" class="invalid-feedback">
+                      <div *ngIf=" subjectItem.get('subject').errors.required">Subject is required</div>
+                  </div>
+                  </div>
+                  <button type="button" class="btn btn-danger" (click)="deleteSubject(subPointIndex)">Delete </button>
+                  
+            </div>
+            <button type="button" class="btn btn-success" (click)=" addSubject(pointIndex)">Add Subject</button>
         </div>
             <button type="button" class="btn btn-danger" (click)="deleteEducation(pointIndex)">Delete </button>
             </div>

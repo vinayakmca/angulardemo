@@ -29,7 +29,7 @@
 
     <div class="form-group col-5">
         <label>City</label>
-        <input type="file" formControlName="image" class="form-control" (change)="imageUpload($event)" [ngClass]="{ 'is-invalid': submitted && f.profile.errors }" />
+        <input type="file" formControlName="image" class="form-control" (change)="imageUpload($event)" [ngClass]="{ 'is-invalid':  f.image.errors }" />
        
     </div>
     </div>

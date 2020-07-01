@@ -12,6 +12,7 @@
                 <td>{{item.firstName}}</td>
                 <td>{{item.lastName}}</td>
                 <td>{{item.city}}</td>
+                <td><app-details [userDetails]="item" (updateCity)="updateUserCity(item,curruntPage)"></app-details></td>
                 <td> <button (click)="editUser(item.id)" class="btn btn-primary mr-1">Edit</button ></td>
                 <td> <button (click)="deleteUser(item.id,curruntPage)" class="btn btn-primary mr-1">Delete</button ></td>
             </tr>
@@ -19,7 +20,7 @@
         </table>
       
 </div>
-
+<ngx-ui-loader></ngx-ui-loader>
 {{curruntPage}}
 <app-pagination [maxPages]="maxpa"
 [current]="curruntPage"

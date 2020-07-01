@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
 
   profileForm:FormGroup;
   submitted = false;
-  public  authObj:AuthBody=new AuthBody();
+ // public  authObj:AuthBody=new AuthBody();
   constructor(private fb:FormBuilder) { }
 
   
@@ -44,8 +44,13 @@ export class ProfileComponent implements OnInit {
       courseName:['',Validators.required],
   percentage:['',Validators.required],
   collegeName:['',Validators.required],
-  passingYear:['',Validators.required]
+  passingYear:['',Validators.required],
+  subjects:new FormArray([this.createSubForm()])
     });
+}
+
+createSubForm():FormGroup{
+  return this.fb.group({subject:['',Validators.required]});
 }
 
 createExperianceForm():FormGroup{
@@ -67,6 +72,11 @@ createExperianceForm():FormGroup{
      return this.profileForm.get('experiance') as FormArray;
   }
 
+  get subjectForm():FormArray{
+  
+    return  this.profileForm.get('education') as FormArray;
+  }
+
   addEducation() {
     this.educationForm.push(this.createEducationForm());
   }
@@ -81,6 +91,23 @@ createExperianceForm():FormGroup{
 
   deleteExperiance(index) {
     this.experianceForm.removeAt(index);
+  }
+
+
+  getSubject(form){
+      return  (<FormArray> form.controls.subjects).controls;
+  }
+
+  addSubject(i) {
+    const control = <FormArray>  this.subjectForm.controls[i].get('subjects');
+    control.push(this.createSubForm());
+  }
+
+  deleteSubject(index) {
+
+    const control = <FormArray>  this.subjectForm.controls[index].get('subjects');
+    control.removeAt(index);
+   
   }
 
   submitForm(){
